@@ -1,5 +1,5 @@
 create table candidates.candidates(
-    id uuid default gen_random_uui() primary key,
+    id uuid default gen_random_uuid() primary key,
     txn_date timestamp default now(),
     name text,
     email_id text,
