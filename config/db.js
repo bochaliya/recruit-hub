@@ -12,9 +12,11 @@ const pool = new Pool(dbConfigs);
 
 async function getClient() {
     const client = await pool.connect();
+    console.log(client);
     return client;
 }
 
+getClient();
 exports = module.exports = {
     getClient
 }
