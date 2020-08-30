@@ -8,7 +8,7 @@ create table candidates.candidates(
     profile_photo uuid references candidates.profile_photos(id),
     country text references locations.countries(tag),
     state text references locations.states(tag),
-    district text references locations.district(tag),
+    district text references locations.districts(tag),
     current_address text,
     profile_summary text,
     work_experience uuid references candidates.work_experience(id),
