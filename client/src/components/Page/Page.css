@@ -1,0 +1,42 @@
+.card_img {
+  width: 300px;
+  height: 300px;
+}
+
+.post-module {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  display: block;
+  background: #ffffff;
+  max-width: 350px;
+  max-height: 400px;
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  -webkit-transition: all 0.3s linear 0s;
+  -moz-transition: all 0.3s linear 0s;
+  -ms-transition: all 0.3s linear 0s;
+  -o-transition: all 0.3s linear 0s;
+  transition: all 0.3s linear 0s;
+}
+
+.main_container {
+  background: linear-gradient(45deg, #5f9fe3 10%, #a2c7e5 90%);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.main_container .column {
+  /* width: 100%; */
+  padding: 0 25px;
+  -webkti-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+}

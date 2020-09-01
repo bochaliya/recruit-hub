@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "recruit-hub",
   "version": "1.0.0",
   "description": "Repository for Recruit-a-thon hackathon",
@@ -25,5 +26,4 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
-  }
 }
