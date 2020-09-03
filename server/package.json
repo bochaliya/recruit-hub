@@ -1,0 +1,28 @@
+{
+  "name": "recruit-hub",
+  "version": "1.0.0",
+  "description": "Repository for Recruit-a-thon hackathon",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bochaliya/recruit-hub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bochaliya/recruit-hub/issues"
+  },
+  "homepage": "https://github.com/bochaliya/recruit-hub#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "express": "^4.17.1",
+    "pg": "^8.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+}

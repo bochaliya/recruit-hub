@@ -1,0 +1,14 @@
+\i models/schema.sql
+\i models/extensions.sql
+\i models/certificates.sql
+\i models/locations.sql
+\i models/organizations.sql
+\i models/personal_projects.sql
+\i models/profile_photos.sql
+\i models/work_experience.sql
+\i models/education.sql
+\i models/companies.sql
+\i models/recruiters.sql
+\i models/candidates.sql
+\i models/jobs.sql
+\i models/applied_jobs.sql
