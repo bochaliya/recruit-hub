@@ -1,42 +1,48 @@
-import React from 'react';
-import Card from '../Card/Card'
-import './Home.css'
-import '../../assets/css/w3.css'
+import React, { useState, useEffect } from "react";
 
-import img1 from './img1.png'
-import img2 from './img2.png'
-import img3 from './img3.png'
+import UserService from "../../services/user-service";
+import img1 from "./img1.png";
 
-function Home() {
-    return (
-        <div class="w3-container home__container">
-            <ul class="w3-ul w3-card-4">
-                <li class="w3-bar">
-                    <img src={img1} class="w3-bar-item w3-circle w3-hide-small home__image" />
-                    <div class="w3-bar-item">
-                        <span class="w3-large">Mike</span><br></br>
-                        <span>Web Designer</span>
-                    </div>
-                </li>
+const Home = () => {
+  const [content, setContent] = useState("");
 
-                <li class="w3-bar">
-                    <img src={img2} class="w3-bar-item w3-circle w3-hide-small home__image" />
-                    <div class="w3-bar-item">
-                        <span class="w3-large">Jill</span><br></br>
-                        <span>Support</span>
-                    </div>
-                </li>
+  useEffect(() => {
+    UserService.getPublicContent().then(
+      (response) => {
+        setContent(response.data);
+      },
+      (error) => {
+        const _content = (error.response && error.response.data) || error.message || error.toString();
+        setContent(_content);
+      }
+    );
+  }, []);
 
-                <li class="w3-bar">
-                    <img src={img3} class="w3-bar-item w3-circle w3-hide-small home__image" />
-                    <div class="w3-bar-item">
-                        <span class="w3-large">Jane</span><br></br>
-                        <span>Accountant</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    )
-}
+  return (
+    <div className="w3-container home__container">
+    <ul className="w3-ul w3-card-4">
+        {/* {content.jobs.map((job) => (
+            <li className="w3-bar" key={job.id}>
+                <img src={img1} class="w3-bar-item w3-circle w3-hide-small home__image" />
+                <div class="w3-bar-item">
+                    <span class="w3-large">Mike</span><br></br>
+                    <span>{job.description}</span>
+                    <h3>{content}</h3>
+                </div>
+                <button className="w3-button  w3-green w3-section w3-padding w3-right " onClick={() => dispatch(appliedJob(job.id))}>Apply</button>
+            </li>
+        ))} */}
+        <li className="w3-bar" >
+                <img src={img1} className="w3-bar-item w3-circle w3-hide-small home__image" />
+                <div className="w3-bar-item">
+                    <span className="w3-large">Mike</span><br></br>
+                    <span>{content}</span>
+                </div>
+                {/* <button className="w3-button  w3-green w3-section w3-padding w3-right " onClick={() => dispatch(appliedJob(job.id))}>Apply</button> */}
+            </li>
+    </ul>
+</div> 
+  );
+};
 
-export default Home
+export default Home;
