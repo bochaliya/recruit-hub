@@ -17,6 +17,6 @@ async function getClient() {
 }
 
 getClient();
-exports = module.exports = {
+module.exports = {
     getClient
 }
