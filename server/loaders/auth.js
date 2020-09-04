@@ -1,42 +1,29 @@
-const express = require('express');
-const app = express();
 const bcrypt = require('bcrypt');
 const db = require('../config/db.js');
 
-
-app.use(express.json())
-
-app.get('/users', (req, res) => {
-    res.json(users)
-})
-
-app.post('/users', async (req, res) => {
-    try {
-        const salt = await bcrypt.genSalt()
-        const hashedPassword = await bcrypt.hash(req.body.password, salt)
-        const user = { name: req.body.name, password: hashedPassword }
-        res.status(201).send()
-    } catch {
-        res.status(500).send()
-    } 
-})
-
-app.post('/users/login', async(req, res) => {
-    const user = 'something';
-    if(user == null) {
-        return res.status(400).send('Can not find user');
+async function register(params) {
+    try { 
+        let salt = await bcrypt.genSalt();
+        let hashedPassword = await bcrypt.hash(params.password, salt);
+        let userDetails = await db.query('insert into candidates.candidates(name,email_id, password) values($1,$2,$3) retuning *', [params.name, params.email, hashedPassword]);
     }
+    catch(err) {
+        throw new Error('Can not able to register' + err.message);
+    }
+    return userDetails;
+}
+
+async function login(params) {
     try {
-        if(await bcrypt.compare(res.body.password, user.password)) {
-            res.status(201).send('Success');
-        } 
-        else {
-            res.send('User not created');
+        let userDetails = await db.query('select * from candidates.candidates where email_id = $1', [params.email])[0];
+        if(userDetails != null && await bcrypt.compare(params.password, userDetails.password)) {
+            return userDetails;
         }
-
-    } catch {
-        res.status(500).send()
+        else {
+            return 'User not created';
+        }
     }
-})
-
-app.listen(3000, 'localhost')
+    catch(err) {
+        throw new Error('Can not able to login' + err.message);
+    }
+}

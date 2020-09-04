@@ -1,12 +1,16 @@
 const http = require('http');
+const auth = require('./loaders/auth.js');
 
 var server = http.createServer((req, res) => {
-    if(req.url == '/') {
-        res.writeHead(200, { 'Content-Type': 'text/html' }); 
-        
-        // set response content    
-        res.write('<html><body><p>This is home Page.</p></body></html>');
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    var url = req.url;
+    if(url == '/register') {
+        let userDetails = auth.register(req.body);
         res.end();
+    }
+    else if(url === '/login') {
+        let userDetails = auth.login();
+        res.end()
     }
     else {
         res.end('Invalid request!');
