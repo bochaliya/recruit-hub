@@ -1,12 +1,13 @@
-import React from 'react';
-
+import React from "react";
 
 const Footer = () => {
     return (
-        <footer className="footer text-center">
-            All Rights Reserved by Xtreme admin. Designed and Developed by{' '}
-            <a href="https://wrappixel.com">WrapPixel</a>.
-        </footer>
+        <>
+            <footer className="w-100 bg-light text-center">
+                <p>© 2020 Recruit-Hub. All Rights Reserved | Terms and Conditions</p>
+            </footer>
+        </>
     );
-}
+};
+
 export default Footer;

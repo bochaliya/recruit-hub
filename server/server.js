@@ -1,21 +1,42 @@
-const http = require('http');
 const auth = require('./loaders/auth.js');
+const jobs = require('./loaders/jobs.js');
+const users = require('./loaders/users.js');
+let express = require('express');
+let app = express();
 
-var server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    var url = req.url;
-    if(url == '/register') {
-        let userDetails = auth.register(req.body);
-        res.end();
-    }
-    else if(url === '/login') {
-        let userDetails = auth.login();
-        res.end()
-    }
-    else {
-        res.end('Invalid request!');
-    }
+
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
+app.get('/', function (req, res) {
+    res.send('recruit-hub App...')
 })
-server.listen(3000);
 
-console.log('server running at port 3000');
+app.get('/login', function (req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    let userDetails = auth.login();
+    res.end()
+})
+
+app.get('/register', function (req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    let userDetails = auth.register(req.body);
+    res.end();
+})
+
+app.get('/joblist', async function (req, res) {
+    let result = await jobs.joblist();
+    res.send(result);
+})
+
+app.get('/userlist', async function (req, res) {
+    let result = await users.userlist();
+    res.send(result);
+})
+
+let server = app.listen(3000, async function () {
+    console.log('App listening 3000 port:')
+})

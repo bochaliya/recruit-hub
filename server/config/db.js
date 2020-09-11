@@ -1,22 +1,23 @@
-const {Pool} = require('pg');
+const poolSize = 50
+const { Pool } = require('pg')
 
-dbConfigs = {
-    host: 'localhost',
+const pool = new Pool({
+    //host: 'localhost',
     user: 'postgres',
-    max: 20,
+    database: 'recruit_hub',
+    max: poolSize + 5,
     idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 2000
-}
+    connectionTimeoutMillis: 2000,
+})
 
-const pool = new Pool(dbConfigs);
 
 async function getClient() {
-    const client = await pool.connect();
-    console.log(client);
-    return client;
+    const client = await pool.connect()
+    return client
 }
 
-//getClient();
-module.exports = {
+
+exports = module.exports = {
     getClient
 }
+
